@@ -1,4 +1,4 @@
-# Projeto Bomb Game desenvolvido no curso Especialista React Native do OneBitCode
+# Projeto Marketplace desenvolvido no curso Especialista React Native do OneBitCode
 
 Api de vagas de emprego
 
