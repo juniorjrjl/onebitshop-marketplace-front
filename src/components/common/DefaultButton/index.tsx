@@ -8,12 +8,9 @@ type props = {
     buttonHandle: Function
 }
 
-const DefaultButton = ({children, buttonType, marginVertical, buttonHandle}: props) =>{
-    return(
-        <ButtonContainer type={buttonType} marginVertical={marginVertical}>
-            <ButtonText onPress={() => buttonHandle()}>{children}</ButtonText>
-        </ButtonContainer>
-    )
-}
+const DefaultButton = ({children, buttonType, marginVertical, buttonHandle}: props) =>
+    <ButtonContainer onPress={() => buttonHandle()} type={buttonType} marginVertical={marginVertical}>
+        <ButtonText>{children}</ButtonText>
+    </ButtonContainer>
 
 export default DefaultButton
