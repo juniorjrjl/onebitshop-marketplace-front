@@ -26,7 +26,7 @@ const Login = () =>{
             </InputContainer>
             <ForgetPassword>Esqueci sua senha?</ForgetPassword>
             <DefaultButton buttonType="primary" marginVertical={40} buttonHandle={() => handleLogin()}>Fazer Login</DefaultButton>
-            <RegisterText onPress={() => navigation.navigate('Home')}><Bold>Ainda não tenho conta</Bold></RegisterText>
+            <RegisterText onPress={() => navigation.navigate('Register')}><Bold>Ainda não tenho conta</Bold></RegisterText>
             <CompanyLogo source={companyLogo}/>
         </Container>
     )
