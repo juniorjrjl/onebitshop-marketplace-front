@@ -16,13 +16,13 @@ const Login = () =>{
 
     return (
         <Container>
-            <BackIcon marginLeft={30}/>
+            <BackIcon marginLeft={20}/>
             <Logo source={logo}/>
             <InputContainer>
-                <Input placeholder="Email" placeholderTextColor='white'/>
+                <Input placeholder="Email" placeholderTextColor='#c0c0c1'/>
             </InputContainer>
             <InputContainer>
-                <Input placeholder="Senha" placeholderTextColor='white' secureTextEntry={true}/>
+                <Input placeholder="Senha" placeholderTextColor='#c0c0c1' secureTextEntry={true}/>
             </InputContainer>
             <ForgetPassword>Esqueci sua senha?</ForgetPassword>
             <DefaultButton buttonType="primary" marginVertical={40} buttonHandle={() => handleLogin()}>Fazer Login</DefaultButton>

@@ -16,7 +16,7 @@ export const Logo = styled.Image.attrs({resizeMode: 'contain'})`
 `
 
 export const InputContainer = styled.View`
-    width: 85%;
+    width: 90%;
     height: 50px;
     border: 1px solid ${({theme}) => theme.colors.borderColor};
     background-color: 1px solid ${({theme}) => theme.colors.background};
@@ -36,7 +36,8 @@ export const ForgetPassword = styled.Text`
     font-size: 16px;
     font-weight: bold;
     text-align: right;
-    margin-right: 10%;
+    margin-right: 6%;
+    margin-top: 10px;
     color: ${({theme}) => theme.colors.secondaryText};
 `
 
