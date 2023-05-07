@@ -12,7 +12,7 @@ const Login = () =>{
 
     const navigation = useNavigation<PropsStack>()
 
-    const handleLogin = () => Alert.alert("Botão de login")
+    const handleLogin = () => navigation.navigate("Home")
 
     return (
         <Container>
