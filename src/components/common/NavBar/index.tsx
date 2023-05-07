@@ -27,7 +27,7 @@ const NavBar = () =>{
             <IconButton onPress={() => navigation.navigate('Home')}>
                 <Icon source={categories}/>
             </IconButton>
-            <IconButton onPress={() => navigation.navigate('Home')}>
+            <IconButton onPress={() => navigation.navigate('UserProfile')}>
                 <Icon source={profile}/>
             </IconButton>
         </Container>
