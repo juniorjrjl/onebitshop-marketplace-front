@@ -1,6 +1,6 @@
 import React from "react";
-import { Alert, FlatList, ListRenderItem } from 'react-native'
-import { Container, InfoLikeContainer, LikeButton, LikeIcon, ProductImage, ProductInfoContainer, ProductPrice, ProductPriceTitleContainer, ProductTitle, PublishedText, SellerInfoContainer, SellerName } from "./styled";
+import { FlatList, ListRenderItem } from 'react-native'
+import ProductCard from "./ProductCard";
 
 const like = require('../../../../assets/icons/like.png')
 const liked = require('../../../../assets/icons/liked.png')
@@ -64,32 +64,8 @@ const DATA = [
 ];
 
 const ProductList = () =>{
-    const Item = ({data}: {data: ProductType}) =>(
-        <Container activeOpacity={0.85} onPress={() => Alert.alert("Navegação para o produto")}>
-            <ProductImage source={{uri: data.productImage}} />
-                <ProductInfoContainer>
-                    <ProductPriceTitleContainer>
-                        <ProductPrice>{data.price}</ProductPrice>
-                        <ProductTitle numberOfLines={2}>{data.name}</ProductTitle>
-                    </ProductPriceTitleContainer>
-                    <InfoLikeContainer>
-                        <SellerInfoContainer>
-                            <PublishedText>Publicado em {data.publishedData} por:</PublishedText>
-                            <SellerName>{data.SellerName}</SellerName>
-                        </SellerInfoContainer>
-                        {data.liked ? 
-                            (<LikeButton onPress={() => Alert.alert("Você deu like")}>
-                                <LikeIcon source={liked}/>
-                            </LikeButton>) : 
-                            (<LikeButton onPress={() => Alert.alert("Você deu dislike")}>
-                                <LikeIcon source={like}/>
-                            </LikeButton>)}
-                    </InfoLikeContainer>
-                </ProductInfoContainer>
-        </Container>
-    )
 
-    const renderItem: ListRenderItem<ProductType> = ({item}) => (<Item data={item}/>)
+    const renderItem: ListRenderItem<ProductType> = ({item}) => (<ProductCard data={item}/>)
 
     return(
         <FlatList data={DATA} keyExtractor={(item: ProductType)=>item._id } renderItem={renderItem} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}/>
