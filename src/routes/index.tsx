@@ -4,6 +4,7 @@ import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-na
 import Home from "../screens/Home";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
+import Search from "../screens/Search";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,6 +12,7 @@ type PropsNavigationStack = {
     Home: undefined;
     Login: undefined;
     Register: undefined
+    Search: undefined;
 }
 
 export type PropsStack = NativeStackNavigationProp<PropsNavigationStack>
@@ -22,6 +24,7 @@ const Routes = () =>{
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="Home" component={Home}/>
                 <Stack.Screen name="Register" component={Register}/>
+                <Stack.Screen name="Search" component={Search}/>
             </Stack.Navigator>
         </NavigationContainer>
     )
