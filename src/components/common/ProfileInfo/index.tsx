@@ -1,5 +1,5 @@
 import React from "react"
-import { Container } from "../Header/styled"
+import { Container } from "./styled"
 import { DefaultText, Hr, Name, NamePhoneContainer, Phone, PrincipalInfoContainer } from "./styled"
 import { AirbnbRating } from "react-native-ratings"
 
