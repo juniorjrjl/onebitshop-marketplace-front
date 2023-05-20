@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputContainer } from "../styled";
-import { AddressText, Input } from "./styled";
+import { Input } from "./styled";
 import { Alert } from "react-native";
 import DefaultButton from "../../../common/DefaultButton";
 import DropDownComponent from "../../../common/DropDownComponent";
@@ -33,7 +33,6 @@ const FieldsAbled = () => {
                 <Input placeholder="Confirmar Nova Senha" placeholderTextColor="#c0c0c1" secureTextEntry value="********"/>
             </InputContainer>
 
-            <AddressText onPress={() => Alert.alert("Text Clicavel")}>Gerenciar Endereços</AddressText>
             <DefaultButton buttonHandle={() => Alert.alert("Salvar Alterações")} buttonType="primary" marginVertical={10}>Salvar</DefaultButton>
         </>
     )

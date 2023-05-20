@@ -1,11 +1,13 @@
 import React from "react"
-import { Container, DeleteAcc, LogOutBtn, LogOutText } from "./styled"
+import { AddressText, Container, DeleteAcc, LogOutBtn, LogOutText } from "./styled"
 import NavBar from "../../components/common/NavBar"
 import DefaultTitle from "../../components/common/DefaultTitle"
 import ProfileInfo from "../../components/common/ProfileInfo"
 import Form from "../../components/UserSellerProfile/Form"
 import UserAds from "../../components/UserSellerProfile/UserAds"
 import { Alert } from "react-native"
+import { useNavigation } from "@react-navigation/native"
+import { PropsStack } from "../../routes"
 
 const Data = [
     {
@@ -32,6 +34,9 @@ const Data = [
 ];
 
 const UserProfile = () =>{
+    
+    const navigation = useNavigation<PropsStack>()
+
     const handleDeleteAcc = () =>{
         Alert.alert('Você tem certeza?', 'Ao fazer isso você excluira permanentemente sua conta',
         [
@@ -50,6 +55,9 @@ const UserProfile = () =>{
                 <DefaultTitle fontSize={20}>Meu Perfil</DefaultTitle>
                 <ProfileInfo />
                 <Form />
+                
+                <AddressText onPress={() => navigation.navigate('AllAddress')}>Gerenciar Endereços</AddressText>
+
                 <UserAds products={Data} seller={false}/>
 
                 <LogOutBtn onPress={() => {}}>
