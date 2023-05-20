@@ -4,6 +4,8 @@ import DefaultTitle from "../../components/common/DefaultTitle";
 import NavBar from "../../components/common/NavBar";
 import { FlatList, ListRenderItem, View } from "react-native";
 import AddressCard from "./AddressCard";
+import { useNavigation } from "@react-navigation/native";
+import { PropsStack } from "../../routes";
 
 const Data = [
     {
@@ -71,6 +73,11 @@ export interface Address {
 
 const AllAddress = () =>{
 
+    const navigation = useNavigation<PropsStack>()
+
+    const handleNavAddAddress = () => navigation.navigate('AddAddress')
+
+
     const renderItem: ListRenderItem<Address> = ( {item} ) => (<AddressCard item={item} />)
 
     return(
@@ -82,7 +89,7 @@ const AllAddress = () =>{
                     (
                         <>
                             <NoAdd>Você não tem endereços {'\n'}cadastrados no momento</NoAdd>
-                            <CreateAddBtn>
+                            <CreateAddBtn onPress={handleNavAddAddress}>
                                 <CreateAddBtnText>Cadastrar Endereço</CreateAddBtnText>
                             </CreateAddBtn>
                         </>
@@ -93,7 +100,7 @@ const AllAddress = () =>{
                                 <FlatList data={Data} keyExtractor={(item: Address) => item._id} 
                                     renderItem={renderItem} showsVerticalScrollIndicator={false}/>
                             </ListHeight>
-                            <CreateAddBtn>
+                            <CreateAddBtn onPress={handleNavAddAddress}>
                                 <CreateAddBtnText>Cadastrar Endereço</CreateAddBtnText>
                             </CreateAddBtn>
                         </>
