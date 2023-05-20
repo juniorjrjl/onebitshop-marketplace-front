@@ -3,7 +3,7 @@ import Constants from 'expo-constants'
 
 const statusBarHeight = Constants.statusBarHeight;
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.backgroundLight};
     padding-top: ${statusBarHeight}px;
@@ -32,4 +32,10 @@ export const CreateAddBtnText = styled.Text`
     font-size: 18px;
     font-weight: bold;
     color: ${({ theme }) => theme.colors.primaryText};
+`
+
+export const ListHeight = styled.View`
+    min-height: 460px;
+    max-height: 460px;
+    margin-bottom: 30px;
 `
