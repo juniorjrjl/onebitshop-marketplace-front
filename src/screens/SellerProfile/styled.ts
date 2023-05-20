@@ -11,4 +11,9 @@ export const Container = styled.ScrollView`
 export const AdsContainer = styled.View`
     margin: 20px 0px;
 `
-
+export const DenouceTexy = styled.Text`
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    color: ${( {theme} ) => theme.colors.secondaryText};
+`

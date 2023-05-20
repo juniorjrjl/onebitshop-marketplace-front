@@ -1,8 +1,10 @@
 import React from "react";
-import { AdsContainer, Container } from "./styled";
+import { AdsContainer, Container, DenouceTexy } from "./styled";
 import DefaultTitle from "../../components/common/DefaultTitle";
 import ProfileInfo from "../../components/common/ProfileInfo";
 import UserAds from "../../components/UserSellerProfile/UserAds";
+import DefaultButton from "../../components/common/DefaultButton";
+import NavBar from "../../components/common/NavBar";
 
 const Data = [
     {
@@ -30,15 +32,22 @@ const Data = [
 
 const SellerProfile = () => {
     return(
-        <Container contentContainerStyle={{paddingBottom: 180}}>
-            <DefaultTitle fontSize={20}>
-                Perfil do Vendedor
-            </DefaultTitle>
-            <ProfileInfo />
-            <AdsContainer>
-                <UserAds products={Data} seller={true}/>
-            </AdsContainer>
-        </Container>
+        <>
+            <Container contentContainerStyle={{paddingBottom: 180}}>
+                <DefaultTitle fontSize={20}>
+                    Perfil do Vendedor
+                </DefaultTitle>
+                <ProfileInfo />
+                <AdsContainer>
+                    <UserAds products={Data} seller={true}/>
+                </AdsContainer>
+                <DefaultButton buttonType="primary" marginVertical={10} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
+                <DenouceTexy>
+                    Denunciar Anuncio
+                </DenouceTexy>
+            </Container>
+            <NavBar />
+        </>
     )
 }
 
