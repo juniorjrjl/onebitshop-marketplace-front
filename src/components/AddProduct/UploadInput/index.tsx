@@ -1,5 +1,5 @@
 import React, { SetStateAction } from "react";
-import { UploadContainer, UploadIcon, UploadTitle } from "./styled";
+import { ImageContainer, ImagePreview, UploadContainer, UploadIcon, UploadTitle } from "./styled";
 import * as ImagePicker from "expo-image-picker"
 import { Alert } from "react-native";
 
@@ -21,17 +21,28 @@ const UploadInput = ({images, setImages}: ImageProps) =>{
             quality: 1
         })
         if (result.assets){
-            setImages(result.assets)
+            const images = result.assets.slice(0, 6)
+            if (result.assets.length > 6){
+                Alert.alert('As imagens adicionais foram ignoradas')
+            }
+            setImages(images)
         }else {
             Alert.alert('Você não selecionou imagens')
         }
     }
 
     return(
-        <UploadContainer onPress={handlePickUpImage}>
-            <UploadTitle></UploadTitle>
-            <UploadIcon source={updloadIcon}/>
-        </UploadContainer>
+        <>
+            <UploadContainer onPress={handlePickUpImage}>
+                <UploadTitle>Selecione até 6 imagens</UploadTitle>
+                <UploadIcon source={updloadIcon}/>
+            </UploadContainer>
+            <ImageContainer>
+                {
+                    images && images.map(img => ( <ImagePreview key={img.assetId} source={{ uri: img.uri }}/> ))
+                }
+            </ImageContainer>
+        </>
     )
 }
 
