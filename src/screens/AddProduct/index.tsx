@@ -4,6 +4,8 @@ import DefaultTitle from "../../components/common/DefaultTitle";
 import { InputContainer } from "../Login/styled";
 import DropDownComponent from "../../components/common/DropDownComponent";
 import DefaultButton from "../../components/common/DefaultButton";
+import UploadInput from "../../components/AddProduct/UploadInput";
+import { ImagePickerAsset } from "expo-image-picker";
 
 const Address = [
     { value: "Endereço 1" },
@@ -23,6 +25,7 @@ const AddProduct = () =>{
 
     const [category, setCategory] = useState("")
     const [address, setAddress] = useState("")
+    const [images, setImages] = useState<ImagePickerAsset[]>([])
 
     return(
         <Container contentContainerStyle={ { paddingBottom: 120 } }>
@@ -40,9 +43,7 @@ const AddProduct = () =>{
                 <Input placeholder="Descrição"></Input>
             </InputContainer>
 
-            <InputContainer>
-                <Input placeholder="Imagem" ></Input>
-            </InputContainer>
+            <UploadInput images={images} setImages={setImages}/>
 
             <DropDownComponent data={Categories} placeholder="Selecione a categoria" 
                 setSelected={setCategory} emptyMessage="Sem categorias"/>
