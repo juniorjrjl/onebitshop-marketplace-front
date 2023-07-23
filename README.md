@@ -18,7 +18,7 @@ Api de vagas de emprego
 inicie a aplicação
 
 ```
-expo start
+npm expo start
 ```
 
 escaneie o QR code gerado no terminal pelo seu celular ( necessário ter o aplicativo Expo Go instalado)
