@@ -3,7 +3,7 @@ import { Container, EmptyView, Title } from "./styled"
 import BackIcon from "../BackIcon"
 
 type TitleProps = {
-    children: string
+    children: React.ReactNode
     fontSize: number
 }
 
