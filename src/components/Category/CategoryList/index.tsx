@@ -1,6 +1,7 @@
 import React from "react";
 import { Product } from "../../../screens/Categories";
 import { FlatList, ListRenderItem, View } from "react-native";
+import CategoryCard from "./CategoryCard";
 
 interface Props {
     products: Product[];
@@ -8,10 +9,7 @@ interface Props {
 
 const CategoryList = ({ products }: Props) =>{
     
-    const renderItem: ListRenderItem<Product> = () => 
-        <>
-            <View></View>
-        </>
+    const renderItem: ListRenderItem<Product> = ({ item }) => <CategoryCard product={item}/>
 
     return(
         <FlatList data={products} renderItem={renderItem} showsVerticalScrollIndicator={false} />
