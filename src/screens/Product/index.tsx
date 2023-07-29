@@ -5,6 +5,8 @@ import Carousel from "../../components/Product/Carousel";
 import Description from "../../components/Product/Description";
 import SellerInfo from "../../components/Product/SellerInfo";
 import DefaultButton from "../../components/common/DefaultButton";
+import { useNavigation } from "@react-navigation/native";
+import { PropsStack } from "../../routes";
 
 const images = [
     {
@@ -30,6 +32,7 @@ const share = require('../../../assets/icons/share.png')
 
 const Product = () =>{
     const description = "teste"
+    const navigation = useNavigation<PropsStack>()
 
     return(
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
@@ -54,7 +57,7 @@ const Product = () =>{
             <Description>{description}</Description>
             <SellerInfo />
             <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
-            <DenounceSeller>Denunciar Vendedor</DenounceSeller>
+            <DenounceSeller onPress={() => navigation.navigate("Denounce")}>Denunciar Vendedor</DenounceSeller>
         </Container>
     );
 };

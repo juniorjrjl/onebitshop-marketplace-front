@@ -5,6 +5,9 @@ import ProfileInfo from "../../components/common/ProfileInfo";
 import UserAds from "../../components/UserSellerProfile/UserAds";
 import DefaultButton from "../../components/common/DefaultButton";
 import NavBar from "../../components/common/NavBar";
+import { useNavigation } from "@react-navigation/native";
+import { PropsStack } from "../../routes";
+import { Alert } from "react-native";
 
 const Data = [
     {
@@ -31,6 +34,9 @@ const Data = [
 ];
 
 const SellerProfile = () => {
+
+    const navigation = useNavigation<PropsStack>()
+
     return(
         <>
             <Container contentContainerStyle={{paddingBottom: 180}}>
@@ -42,7 +48,10 @@ const SellerProfile = () => {
                     <UserAds products={Data} seller={true}/>
                 </AdsContainer>
                 <DefaultButton buttonType="primary" marginVertical={10} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
-                <DenouceTexy>
+                <DenouceTexy onPress={() => {
+                    navigation.goBack()
+                    Alert.alert("Sua denúncia foi enviada e será analisada pela nossa equipe")
+                    }}>
                     Denunciar Anuncio
                 </DenouceTexy>
             </Container>
