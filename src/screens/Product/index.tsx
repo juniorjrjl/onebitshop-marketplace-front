@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Container, InfoContainer, InteractionContainer, Like, Price, Share, SubTitle, SubtitleContainer, Title } from "./styled";
+import { Button, Container, DenounceSeller, InfoContainer, InteractionContainer, Like, Price, Share, SubTitle, SubtitleContainer, Title } from "./styled";
 import BackIcon from "../../components/common/BackIcon";
 import Carousel from "../../components/Product/Carousel";
 import Description from "../../components/Product/Description";
@@ -54,6 +54,7 @@ const Product = () =>{
             <Description>{description}</Description>
             <SellerInfo />
             <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
+            <DenounceSeller>Denunciar Vendedor</DenounceSeller>
         </Container>
     );
 };
