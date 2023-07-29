@@ -4,6 +4,7 @@ import BackIcon from "../../components/common/BackIcon";
 import Carousel from "../../components/Product/Carousel";
 import Description from "../../components/Product/Description";
 import SellerInfo from "../../components/Product/SellerInfo";
+import DefaultButton from "../../components/common/DefaultButton";
 
 const images = [
     {
@@ -31,7 +32,7 @@ const Product = () =>{
     const description = "teste"
 
     return(
-        <Container>
+        <Container contentContainerStyle={{ paddingBottom: 50 }}>
             <BackIcon marginLeft={30}/>
             <Title>Playstation 4 com 2 controles</Title>
             <SubtitleContainer>
@@ -52,6 +53,7 @@ const Product = () =>{
             </InfoContainer>
             <Description>{description}</Description>
             <SellerInfo />
+            <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
         </Container>
     );
 };

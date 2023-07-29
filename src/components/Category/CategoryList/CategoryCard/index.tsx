@@ -1,6 +1,8 @@
 import React from "react";
 import { Product } from "../../../../screens/Categories";
 import { Button, Container, Image, InfoContainer, Like, LikeContainer, Price, PublishedText, Title } from "./styled";
+import { useNavigation } from "@react-navigation/native";
+import { PropsStack } from "../../../../routes";
 
 const likeImg = require('../../../../../assets/icons/like.png')
 
@@ -9,8 +11,11 @@ interface Props{
 }
 
 const CategoryCard = ({ product }: Props) => {
+
+    const navigation = useNavigation<PropsStack>()
+
     return(
-        <Container activeOpacity={0.85} onPress={() => {}}>
+        <Container activeOpacity={0.85} onPress={() => navigation.navigate("Product")}>
             <Image source={{ uri: product.productImage }}/>
             <InfoContainer>
                 <Price>{product.price}</Price>
