@@ -14,22 +14,22 @@ const SellerInfo = () =>{
         <Container>
             <SellerContainer>
                 <Name>Junior</Name>
-                <Button>
                     {Rate ? 
                         (
-                            <AirbnbRating 
-                                selectedColor="#5F96ED" 
-                                showRating={false} 
-                                isDisabled={true} 
-                                size={16} 
-                                starContainerStyle={{ marginLeft: -20}}
-                                />
+                            <Button onPress={() => navigation.navigate("Feedback")}>
+                                <AirbnbRating 
+                                    selectedColor="#5F96ED" 
+                                    showRating={false} 
+                                    isDisabled={true} 
+                                    size={16} 
+                                    starContainerStyle={{ marginLeft: -20}}
+                                    />
+                            </Button>
                         ) :
                         (
-                            <NoRate>Sem avaliações</NoRate>
+                            <NoRate onPress={() => navigation.navigate("Feedback")}>Sem avaliações</NoRate>
                         )
                     }
-                </Button>
             </SellerContainer>
             <SeeProfile onPress={() => navigation.navigate("SellerProfile")}>Ver perfil</SeeProfile>
         </Container>
