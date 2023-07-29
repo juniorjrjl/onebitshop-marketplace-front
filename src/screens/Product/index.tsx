@@ -2,6 +2,7 @@ import React from "react"
 import { Button, Container, InfoContainer, InteractionContainer, Like, Price, Share, SubTitle, SubtitleContainer, Title } from "./styled";
 import BackIcon from "../../components/common/BackIcon";
 import Carousel from "../../components/Product/Carousel";
+import Description from "../../components/Product/Description";
 
 const images = [
     {
@@ -26,6 +27,8 @@ const like = require('../../../assets/icons/like.png')
 const share = require('../../../assets/icons/share.png')
 
 const Product = () =>{
+    const description = "teste"
+
     return(
         <Container>
             <BackIcon marginLeft={30}/>
@@ -36,16 +39,17 @@ const Product = () =>{
             </SubtitleContainer>
             <Carousel images={images}/>
             <InfoContainer>
-                    <Price>R$ 2.500,00</Price>
-                    <InteractionContainer>
-                        <Button>
-                            <Like source={like}/>
-                        </Button>
-                        <Button>
-                            <Share source={share}/>
-                        </Button>
-                    </InteractionContainer>
-                </InfoContainer>
+                <Price>R$ 2.500,00</Price>
+                <InteractionContainer>
+                    <Button>
+                        <Like source={like}/>
+                    </Button>
+                    <Button>
+                        <Share source={share}/>
+                    </Button>
+                </InteractionContainer>
+            </InfoContainer>
+            <Description>{description}</Description>
         </Container>
     );
 };
