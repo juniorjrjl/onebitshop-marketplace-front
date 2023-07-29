@@ -23,7 +23,7 @@ export const SubtitleContainer = styled.View`
 `;
 
 export const SubTitle = styled.Text`
-    font-size: 24px;
+    font-size: 14px;
     color: ${({ theme }) => theme.colors.secondaryText};
 `;
 

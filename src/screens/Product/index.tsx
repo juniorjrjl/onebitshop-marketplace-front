@@ -3,6 +3,7 @@ import { Button, Container, InfoContainer, InteractionContainer, Like, Price, Sh
 import BackIcon from "../../components/common/BackIcon";
 import Carousel from "../../components/Product/Carousel";
 import Description from "../../components/Product/Description";
+import SellerInfo from "../../components/Product/SellerInfo";
 
 const images = [
     {
@@ -50,6 +51,7 @@ const Product = () =>{
                 </InteractionContainer>
             </InfoContainer>
             <Description>{description}</Description>
+            <SellerInfo />
         </Container>
     );
 };
