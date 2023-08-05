@@ -7,7 +7,7 @@ export const Container = styled.ScrollView`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.backgroundLight};
     padding-top: ${statusBarHeight}px;
-`
+`;
 
 export const LogOutBtn = styled.TouchableOpacity`
     width: 90%;
