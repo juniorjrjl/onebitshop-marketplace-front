@@ -15,7 +15,7 @@ export const InputContainer = styled.View`
     border-radius: 5px;
     background-color: ${({ theme }) => theme.colors.background};
     margin: 0 auto;
-    margin-bottom: 20%;
+    margin-bottom: 25%;
     padding: 5px 10px;
     flex-direction: row;
     align-items: center;
