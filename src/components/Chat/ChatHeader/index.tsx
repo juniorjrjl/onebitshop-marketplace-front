@@ -4,6 +4,7 @@ import BackIcon from "../../common/BackIcon";
 import { Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../routes";
+import AdCard from "./AdCard";
 
 const modalImg = require('../../../../assets/icons/dots.png')
 
@@ -46,6 +47,7 @@ const ChatHeader = ({ sellerName, product }: any) =>{
                     </ModalOverlay>
                 </Modal>
             </Row>
+            <AdCard product={product}/>
         </Container>
     )
 }
