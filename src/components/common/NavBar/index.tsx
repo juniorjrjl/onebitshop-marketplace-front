@@ -18,7 +18,7 @@ const NavBar = () =>{
             <IconButton onPress={() => navigation.navigate('Home')}>
                 <Icon source={home}/>
             </IconButton>
-            <IconButton onPress={() => navigation.navigate('Home')}>
+            <IconButton onPress={() => navigation.navigate('AllChats')}>
                 <Icon source={chat}/>
             </IconButton>
             <IconButton onPress={() => navigation.navigate('AddProduct')}>
