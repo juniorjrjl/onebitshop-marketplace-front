@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { PropsNavigationStack } from "../../routes";
 import ChatHeader from "../../components/Chat/ChatHeader";
 import MessageList from "../../components/Chat/MessageList";
+import { Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback } from "react-native";
 
 type Props = NativeStackScreenProps<PropsNavigationStack, 'Chat'>;
 
@@ -19,12 +20,16 @@ const Chat = ({route}: Props) =>{
                 product={route.params.chatInfo.product}/>
 
             <MessageList messages={route.params.chatInfo.messages}/>
-            <InputContainer>
-                <Input placeholder="Digite uma mensage" placeholderTextColor='white' multiline/>
-                <SendButton onPress={() => {}}>
-                    <SendIcon source={sendIcon}/>
-                </SendButton>
-            </InputContainer>
+            <KeyboardAvoidingView  behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <InputContainer>
+                        <Input placeholder="Digite uma mensage" placeholderTextColor='white' multiline/>
+                        <SendButton onPress={() => {}}>
+                            <SendIcon source={sendIcon}/>
+                        </SendButton>
+                    </InputContainer>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
             <NavBar />
         </Container>
     )
