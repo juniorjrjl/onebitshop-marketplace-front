@@ -15,6 +15,10 @@ Api de vagas de emprego
 
 ## Configurando a aplicação
 
+para o projeto funcionar corretamente é necessário configurar a aplicação backend localizada em:
+
+[reactnative-marketplace](https://github.com/juniorjrjl/reactnative-marketplace)
+
 informe o endereço do backend usado pelo app no arquivo localizado em src/services/api.ts
 
 ```
