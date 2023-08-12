@@ -2,17 +2,10 @@ import React from "react";
 import { AdCard, Container, Image, InfoContainer, InfoIconContainer, NoAds, Prince, PrinceTitleContainer, PublishedText, Title, TotalAds, IconButton, Icon } from "./styled";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../routes";
+import { Product } from "../../../entities/Product";
 
 const trashIcon = require('../../../../assets/icons/trash.png')
 const favoriteIcon = require('../../../../assets/icons/like.png')
-
-interface Product{
-    id: string;
-    productImage: string;
-    price: string;
-    title: string;
-    publishedData: string;
-}
 
 interface ProductProps {
     products: Product[],
@@ -31,12 +24,12 @@ const UserAds = ({ products, seller }: ProductProps) =>{
 
             {products.length > 0 ? (            
                 products.map( p => (
-                    <AdCard key={p.id} activeOpacity={0.85} onPress={handleEditProduct}>
-                    <Image source={{uri: p.productImage}}/>
+                    <AdCard key={p._id} activeOpacity={0.85} onPress={handleEditProduct}>
+                    <Image source={{uri: p.images[0].url}}/>
                     <InfoContainer>
                         <PrinceTitleContainer>
                             <Prince>{p.price}</Prince>
-                            <Title numberOfLines={2}>{p.title}</Title>
+                            <Title numberOfLines={2}>{p.name}</Title>
                         </PrinceTitleContainer>
                         {seller ? 
                         (

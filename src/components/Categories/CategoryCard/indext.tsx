@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Image, LikeButtom, Price, SellerLikeContainer, SellerName, TextContainer, Title } from "./styled";
-import { Product } from "../../../screens/Categories";
 import { LikeIcon } from "../../common/ProductList/ProductCard/styled";
+import { Product } from "../../../entities/Product";
 
 const likeIcon = require('../../../../assets/icons/like.png')
 
@@ -12,12 +12,12 @@ interface ProductProps{
 const CategoryCard = ({product}: ProductProps) =>{
     return(
         <Container>
-            <Image source={{ uri: product.productImage }}/>
+            <Image source={{ uri: product.images[0].url }}/>
             <TextContainer>
-                <Title>{product.title}</Title>
+                <Title>{product.name}</Title>
                 <Price>{product.price}</Price>
                 <SellerLikeContainer>
-                    <SellerName>Junior</SellerName>
+                    <SellerName>{product.seller.name}</SellerName>
                     <LikeButtom>
                         <LikeIcon source={likeIcon}/>
                     </LikeButtom>
