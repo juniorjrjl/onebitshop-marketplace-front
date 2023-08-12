@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, ContentTxt, DeleteBtn, DeleteIcon } from "./styled";
-import { Address } from "..";
 import { Alert } from "react-native";
+import { Address } from "../../../entities/User";
 
 const deleteIcon = require('../../../../assets/icons/trash.png')
 

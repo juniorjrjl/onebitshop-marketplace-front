@@ -2,10 +2,11 @@ import React from "react";
 import { Container, CreateAddBtn, CreateAddBtnText, ListHeight, NoAdd } from "./styled";
 import DefaultTitle from "../../components/common/DefaultTitle";
 import NavBar from "../../components/common/NavBar";
-import { FlatList, ListRenderItem, View } from "react-native";
+import { FlatList, ListRenderItem } from "react-native";
 import AddressCard from "./AddressCard";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../routes";
+import { Address } from "../../entities/User";
 
 const Data = [
     {
@@ -59,17 +60,6 @@ const Data = [
         cep: "57037100",
     },
 ];
-
-export interface Address {
-    _id: string;
-    street: string;
-    number: string;
-    complement: string;
-    district: string;
-    city: string;
-    state: string;
-    cep: string;
-}
 
 const AllAddress = () =>{
 
