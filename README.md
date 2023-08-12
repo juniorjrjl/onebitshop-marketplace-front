@@ -13,6 +13,18 @@ Api de vagas de emprego
 - Node
 - NPM
 
+## Configurando a aplicação
+
+informe o endereço do backend usado pelo app no arquivo localizado em src/services/api.ts
+
+```
+import axios from "axios";
+
+const baseURL = "http://192.168.0.199:3000";
+
+...
+```
+
 ## Executando a aplicação
 
 inicie a aplicação
