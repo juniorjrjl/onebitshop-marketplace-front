@@ -3,6 +3,7 @@ import { Button, Container, Name, NoRate, SeeProfile, SellerContainer } from "./
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../routes";
 import { AirbnbRating } from "react-native-ratings";
+import useAuth from "../../../hook/useAuth";
 
 const SellerInfo = () =>{
 
@@ -10,13 +11,15 @@ const SellerInfo = () =>{
 
     const Rate = null
 
+    const { token } = useAuth()
+
     return(
         <Container>
             <SellerContainer>
                 <Name>Junior</Name>
                     {Rate ? 
                         (
-                            <Button onPress={() => navigation.navigate("Feedback")}>
+                            <Button onPress={() => navigation.navigate(token ? 'Feedback': 'Login')}>
                                 <AirbnbRating 
                                     selectedColor="#5F96ED" 
                                     showRating={false} 
@@ -27,7 +30,7 @@ const SellerInfo = () =>{
                             </Button>
                         ) :
                         (
-                            <NoRate onPress={() => navigation.navigate("Feedback")}>Sem avaliações</NoRate>
+                            <NoRate onPress={() => navigation.navigate(token ? 'Feedback': 'Login')}>Sem avaliações</NoRate>
                         )
                     }
             </SellerContainer>

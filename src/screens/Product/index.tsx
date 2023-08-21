@@ -7,6 +7,7 @@ import SellerInfo from "../../components/Product/SellerInfo";
 import DefaultButton from "../../components/common/DefaultButton";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../routes";
+import useAuth from "../../hook/useAuth";
 
 const images = [
     {
@@ -33,6 +34,7 @@ const share = require('../../../assets/icons/share.png')
 const Product = () =>{
     const description = "teste"
     const navigation = useNavigation<PropsStack>()
+    const { token } = useAuth()
 
     return(
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
@@ -57,7 +59,7 @@ const Product = () =>{
             <Description>{description}</Description>
             <SellerInfo />
             <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
-            <DenounceSeller onPress={() => navigation.navigate("Denounce")}>Denunciar Vendedor</DenounceSeller>
+            <DenounceSeller onPress={() => navigation.navigate(token ? 'Denounce': 'Login')}>Denunciar Vendedor</DenounceSeller>
         </Container>
     );
 };

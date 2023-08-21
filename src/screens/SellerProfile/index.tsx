@@ -8,6 +8,7 @@ import NavBar from "../../components/common/NavBar";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../routes";
 import { Alert } from "react-native";
+import useAuth from "../../hook/useAuth";
 
 const Data = [
     {
@@ -37,6 +38,8 @@ const SellerProfile = () => {
 
     const navigation = useNavigation<PropsStack>()
 
+    const { token } = useAuth()
+
     return(
         <>
             <Container contentContainerStyle={{paddingBottom: 180}}>
@@ -49,7 +52,7 @@ const SellerProfile = () => {
                 </AdsContainer>
                 <DefaultButton buttonType="primary" marginVertical={10} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
                 <DenouceTexy onPress={() => {
-                    navigation.goBack()
+                    navigation.navigate(token ? 'Denounce': 'Login')
                     Alert.alert("Sua denúncia foi enviada e será analisada pela nossa equipe")
                     }}>
                     Denunciar Anuncio
