@@ -49,6 +49,8 @@ const authReducer = (prevState: AuthState, action: AuthAction): AuthState => {
 
 interface AuthContextData extends AuthState{
     register:(name: string, email: string, password: string, phone: string) => Promise<void>
+    login: (email: string, password: string) => Promise<void>
+    logout: () => Promise<void>
 }
 
 export const AuthContext = React.createContext<AuthContextData>(

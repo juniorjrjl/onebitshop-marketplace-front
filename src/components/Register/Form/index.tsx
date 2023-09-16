@@ -24,7 +24,7 @@ const Form = ({fields, setFields}: props) =>{
             </InputContainer>
             <InputContainer>
                 <Input placeholder="Email" placeholderTextColor="#c0c0c1" 
-                    value={fields.email} onChangeText={val => setFields({...fields, email: val})}/>
+                    value={fields.email} onChangeText={val => setFields({...fields, email: val})} autoCapitalize="none"/>
             </InputContainer>
             <InputContainer>
                 <InputMask type="cel-phone" options={{ maskType: "BRL", withDDD: true, dddMask: '(99) '}} 
