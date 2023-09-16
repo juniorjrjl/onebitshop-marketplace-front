@@ -8,6 +8,7 @@ import UserAds from "../../components/UserSellerProfile/UserAds"
 import { Alert } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { PropsStack } from "../../routes"
+import useAuth from "../../hook/useAuth"
 
 const Data = [
     {
@@ -34,7 +35,7 @@ const Data = [
 ];
 
 const UserProfile = () =>{
-    
+    const { logout } = useAuth()
     const navigation = useNavigation<PropsStack>()
 
     const handleDeleteAcc = () =>{
@@ -58,9 +59,9 @@ const UserProfile = () =>{
                 
                 <AddressText onPress={() => navigation.navigate('AllAddress')}>Gerenciar Endereços</AddressText>
 
-                <UserAds products={Data} seller={false}/>
+                {/*<UserAds products={Data} seller={false}/ >*/}
 
-                <LogOutBtn onPress={() => {}}>
+                <LogOutBtn onPress={logout}>
                     <LogOutText>Sair da sua conta</LogOutText>
                 </LogOutBtn>
                 <DeleteAcc onPress={handleDeleteAcc}>

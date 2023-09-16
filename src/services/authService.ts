@@ -28,7 +28,7 @@ const authService = {
         if (res.status === 400 || res.status === 401){
             Alert.alert("Email e/ou senha incorretos")
         } else {
-            await SecureStore.setItemAsync("onebitsho-token", res.data.token)
+            await SecureStore.setItemAsync("onebitshop-token", res.data.token)
             await AsyncStorage.setItem('user', JSON.stringify(res.data.user))
         }
 
