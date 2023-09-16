@@ -11,7 +11,7 @@ const authService = {
 
     register: async (params: RegisterParams) => {
         const res = await api.post('/register', params);
-
+        
         return res
     },
 

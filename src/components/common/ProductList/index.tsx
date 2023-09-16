@@ -11,7 +11,8 @@ const ProductList = () =>{
     const renderItem: ListRenderItem<Product> = ({item}) => (<ProductCard data={item}/>)
 
     return(
-        <FlatList data={DATA} keyExtractor={(item: Product)=>item._id } renderItem={renderItem} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}/>
+        <FlatList data={[]} keyExtractor={(item: Product)=>item._id } 
+            renderItem={renderItem} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}/>
     )
 }
 
