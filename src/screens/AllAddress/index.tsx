@@ -21,7 +21,7 @@ const AllAddress = ({ route }: Props) =>{
     const handleNavAddAddress = () => navigation.navigate('AddAddress')
 
 
-    const renderItem: ListRenderItem<Address> = ( {item} ) => (<AddressCard item={item} />)
+    const renderItem: ListRenderItem<Address> = ( {item} ) => (<AddressCard item={item} addresses={allAddress} setAddress={setAllAddress}/>)
 
     const handleGetAddress =async () => {
         const res = await addressService.getAddress()
