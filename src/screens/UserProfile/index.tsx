@@ -57,7 +57,7 @@ const UserProfile = () =>{
                 <ProfileInfo />
                 <Form />
                 
-                <AddressText onPress={() => navigation.navigate('AllAddress')}>Gerenciar Endereços</AddressText>
+                <AddressText onPress={() => navigation.navigate('AllAddress', { newAddress: false })}>Gerenciar Endereços</AddressText>
 
                 {/*<UserAds products={Data} seller={false}/ >*/}
 

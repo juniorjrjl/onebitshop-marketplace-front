@@ -37,7 +37,7 @@ const AddAddress = () => {
         const data = await addressService.addAddress(params);
 
         if (data.status === 201){
-            navigation.navigate('AllAddress');
+            navigation.navigate('AllAddress', { newAddress: true });
         }
     }
 
