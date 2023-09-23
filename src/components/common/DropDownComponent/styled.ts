@@ -1,5 +1,5 @@
-import { SelectList } from "react-native-dropdown-select-list";
 import styled from "styled-components/native";
+import { SelectList } from "react-native-dropdown-select-list";
 
 export const DropDownContainer = styled.View`
     width: 90%;
@@ -7,29 +7,29 @@ export const DropDownContainer = styled.View`
 `
 
 export const DropDown = styled(SelectList).attrs({
-    boxStyles:{
+    boxStyles: {
         maxWidth: "100%",
-        mibWidth: "100%",
+        minWidth: "100%",
         backgroundColor: "#171717",
         borderRadius: 5,
         paddingLeft: 10
     },
-    inputStyles:{
+    inputStyles: {
         color: "white",
         fontWeight: "bold",
         fontSize: 18,
     },
-    DropDownTextStyles: {
+    dropdownTextStyles: {
         color: "white",
         fontWeight: "bold",
         fontSize: 18,
     },
-    DropDownStyles: {
+    dropdownStyles: {
         borderRadius: 5,
         backgroundColor: "#171717",
     },
-    disabledItemStyles:{
-        backgroundColor: "trasparent",
+    disabledItemStyles: {
+        backgroundColor: "#171717",
     }
 })``
 

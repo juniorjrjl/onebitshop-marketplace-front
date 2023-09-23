@@ -8,6 +8,10 @@ import UploadInput from "../../components/AddProduct/UploadInput";
 import { ImagePickerAsset } from "expo-image-picker";
 import addressService from "../../services/addressService";
 import { Address } from "../../entities/User";
+import { Alert } from "react-native";
+import productService from "../../services/productService";
+import { useNavigation } from "@react-navigation/native";
+import { PropsStack } from "../../routes";
 
 const Categories = [
     { value: "Eletrônicos" },
@@ -26,9 +30,10 @@ const AddProduct = () =>{
     const [addressId, setAddressId] = useState("")
     const [address, setAddress] = useState([])
     const [images, setImages] = useState<ImagePickerAsset[]>([])
+    const navigation = useNavigation<PropsStack>()
 
     const [fields, setFields] = useState({
-        title: "",
+        name: "",
         price: "",
         description: "",
         images: [{}],
@@ -43,8 +48,25 @@ const AddProduct = () =>{
         setAddress(value)
     }
 
-    const handleSubmitProduct = () => {
+    const handleSubmitProduct = async (post: string) => {
+        if (Object.values(fields).some(value => !value) || !fields.images.length){
+            Alert.alert("Preencha as informações do produto corretamente")
+            return
+        }
 
+        const params = { ... fields, images: images.map(({uri})=>({
+            filename: uri.substring(uri.lastIndexOf("/") + 1),
+            uri: uri,
+            url: "",
+            type: `image/${uri.split(".").slice(-1).toString()}`
+        })), published: post}
+        
+        const {status} = await productService.addProduct(params)
+        console.log(status)
+        if (status === 201){
+            Alert.alert("Seu produto foi cadastrado com sucesso");
+            navigation.navigate('Home');
+        }
     }
 
     useEffect(() => { setFields({
@@ -52,7 +74,7 @@ const AddProduct = () =>{
         images: images,
         category: category,
         addressId: addressId
-    }) }, [images, category, address])
+    }) }, [images, category, addressId])
 
     useEffect(() => {
         handleGetAddresses()
@@ -63,7 +85,7 @@ const AddProduct = () =>{
             <DefaultTitle fontSize={20}>Cadastro do Anuncio</DefaultTitle>
 
             <InputContainer>
-                <Input placeholder="Título" value={fields.title} onChangeText={(val) => setFields({...fields, title: val})}></Input>
+                <Input placeholder="Título" value={fields.name} onChangeText={(val) => setFields({...fields, name: val})}></Input>
             </InputContainer>
 
             <InputContainer>
@@ -82,9 +104,9 @@ const AddProduct = () =>{
             <DropDownComponent data={address} placeholder="Selecione o endereço" 
                 setSelected={setAddressId} emptyMessage="Sem endereços"/>
 
-            <DefaultButton marginVertical={20} buttonType="primary" buttonHandle={handleSubmitProduct}>Cadastrar e publicar</DefaultButton>
+            <DefaultButton marginVertical={20} buttonType="primary" buttonHandle={()  => handleSubmitProduct('true')}>Cadastrar e publicar</DefaultButton>
             <Division>Ou</Division>
-            <DefaultButton marginVertical={20} buttonType="secondery" buttonHandle={() => {}}>Salvar como rascunho</DefaultButton>
+            <DefaultButton marginVertical={20} buttonType="secondery" buttonHandle={() => handleSubmitProduct('false')}>Salvar como rascunho</DefaultButton>
 
         </Container>
     )
