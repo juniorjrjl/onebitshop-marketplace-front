@@ -24,7 +24,7 @@ informe o endereço do backend usado pelo app no arquivo localizado em src/servi
 ```
 import axios from "axios";
 
-const baseURL = "http://192.168.0.199:3000";
+const baseURL = "https://www.teste.com";
 
 ...
 ```
