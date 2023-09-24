@@ -3,16 +3,22 @@ import { Container, InfoLikeContainer, LikeButton, LikeIcon, ProductImage, Produ
 import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../../routes";
+import { Product } from "../../../../entities/Product";
+import getDate from "../../../../utils/getDate";
 
 const like = require('../../../../../assets/icons/like.png')
 const liked = require('../../../../../assets/icons/liked.png')
 
-const ProductCard = ({ data }: any) =>{
-    const navigation = useNavigation<PropsStack>()
+interface DataProps {
+    data: Product
+}
 
+const ProductCard = ({ data }: DataProps) =>{
+    const navigation = useNavigation<PropsStack>()
+    console.log(data.images[0].url)
     return(
         <Container activeOpacity={0.85} onPress={() => navigation.navigate("Product")}>
-        <ProductImage source={{uri: data.productImage}} />
+        <ProductImage source={{uri: data.images[0].url}} />
             <ProductInfoContainer>
                 <ProductPriceTitleContainer>
                     <ProductPrice>{data.price}</ProductPrice>
@@ -20,10 +26,10 @@ const ProductCard = ({ data }: any) =>{
                 </ProductPriceTitleContainer>
                 <InfoLikeContainer>
                     <SellerInfoContainer>
-                        <PublishedText>Publicado em {data.publishedData} por:</PublishedText>
-                        <SellerName>{data.SellerName}</SellerName>
+                        <PublishedText>Publicado em {getDate(data.createdAt)} por:</PublishedText>
+                        <SellerName>{data.seller.name}</SellerName>
                     </SellerInfoContainer>
-                    {data.liked ? 
+                    {data ? 
                         (<LikeButton onPress={() => Alert.alert("Você deu like")}>
                             <LikeIcon source={liked}/>
                         </LikeButton>) : 

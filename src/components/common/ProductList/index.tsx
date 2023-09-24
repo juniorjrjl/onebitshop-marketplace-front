@@ -6,13 +6,17 @@ import { Product } from "../../../entities/Product";
 const like = require('../../../../assets/icons/like.png')
 const liked = require('../../../../assets/icons/liked.png')
 
-const ProductList = () =>{
+export interface ProductsListProps {
+    products: Product[];
+    handleGetProducts: Function
+}
 
+const ProductList = ({products, handleGetProducts}: ProductsListProps) =>{
     const renderItem: ListRenderItem<Product> = ({item}) => (<ProductCard data={item}/>)
 
     return(
-        <FlatList data={[]} keyExtractor={(item: Product)=>item._id } 
-            renderItem={renderItem} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}/>
+        <FlatList data={products} keyExtractor={(item: Product)=>item._id } 
+            renderItem={renderItem} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }} onEndReached={() => handleGetProducts}/>
     )
 }
 

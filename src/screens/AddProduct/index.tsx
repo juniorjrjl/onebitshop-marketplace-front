@@ -41,9 +41,9 @@ const AddProduct = () =>{
         addressId: ""
     })
 
-    const handleGetAddresses =async () => {
+    const handleGetAddresses = async () => {
         const res = await addressService.getAddress();
-
+        
         const value = res.data.map((address: Address) => { return { key: address._id, value: `${address.street} Nº ${address.number}`} })
         setAddress(value)
     }
@@ -62,7 +62,7 @@ const AddProduct = () =>{
         })), published: post}
         
         const {status} = await productService.addProduct(params)
-        console.log(status)
+
         if (status === 201){
             Alert.alert("Seu produto foi cadastrado com sucesso");
             navigation.navigate('Home');

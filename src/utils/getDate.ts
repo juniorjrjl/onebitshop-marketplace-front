@@ -1,0 +1,10 @@
+const getDate = (date: string) => {
+    const curDate = new Date(date)
+    const day = curDate.getDate().toString().padStart(2, "0");
+    const month = (curDate.getMonth() + 1).toString().padStart(2, "0");
+    const year = curDate.getFullYear()
+
+    return `${day}/${month}/${year}`
+}
+
+export default getDate
