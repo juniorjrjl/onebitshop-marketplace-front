@@ -5,7 +5,11 @@ import { PropsStack } from "../../../routes";
 import { AirbnbRating } from "react-native-ratings";
 import useAuth from "../../../hook/useAuth";
 
-const SellerInfo = () =>{
+interface Props{
+    name: string
+}
+
+const SellerInfo = ({name}: Props) =>{
 
     const navigation = useNavigation<PropsStack>();
 
@@ -16,7 +20,7 @@ const SellerInfo = () =>{
     return(
         <Container>
             <SellerContainer>
-                <Name>Junior</Name>
+                <Name>{name}</Name>
                     {Rate ? 
                         (
                             <Button onPress={() => navigation.navigate(token ? 'Feedback': 'Login')}>

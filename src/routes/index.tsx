@@ -39,7 +39,7 @@ export type PropsNavigationStack = {
         _id: String,
         products: Product[]
     },
-    Product: undefined,
+    Product: Product,
     Denounce: undefined,
     Feedback: undefined,
     AllChats: undefined,

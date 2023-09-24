@@ -15,9 +15,9 @@ interface DataProps {
 
 const ProductCard = ({ data }: DataProps) =>{
     const navigation = useNavigation<PropsStack>()
-    console.log(data.images[0].url)
+    
     return(
-        <Container activeOpacity={0.85} onPress={() => navigation.navigate("Product")}>
+        <Container activeOpacity={0.85} onPress={() => navigation.navigate("Product", {...data})}>
         <ProductImage source={{uri: data.images[0].url}} />
             <ProductInfoContainer>
                 <ProductPriceTitleContainer>

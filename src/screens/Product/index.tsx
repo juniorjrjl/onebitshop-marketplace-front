@@ -6,47 +6,32 @@ import Description from "../../components/Product/Description";
 import SellerInfo from "../../components/Product/SellerInfo";
 import DefaultButton from "../../components/common/DefaultButton";
 import { useNavigation } from "@react-navigation/native";
-import { PropsStack } from "../../routes";
+import { PropsNavigationStack, PropsStack } from "../../routes";
 import useAuth from "../../hook/useAuth";
-
-const images = [
-    {
-        filename: "image1",
-        url: "https://files.tecnoblog.net/wp-content/uploads/2020/11/ps5-review-5-1060x596.jpg",
-    },
-    {
-        filename: "image2",
-        url: "https://classic.exame.com/wp-content/uploads/2021/05/ps5-the-squad-foto-1.jpg?quality=70&strip=info&w=984",
-    },
-    {
-        filename: "image3",
-        url: "https://cdn.awsli.com.br/1824/1824967/produto/186131938/67bd1ea8d4.jpg",
-    },
-    {
-        filename: "image4",
-        url: "https://cdn.awsli.com.br/600x700/1734/1734513/produto/97494476/030cda119d.jpg",
-    },
-];
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import getDate from "../../utils/getDate";
 
 const like = require('../../../assets/icons/like.png')
 const share = require('../../../assets/icons/share.png')
 
-const Product = () =>{
+type Props = NativeStackScreenProps<PropsNavigationStack, "Product">
+
+const Product = ({ route } : Props) =>{
     const description = "teste"
     const navigation = useNavigation<PropsStack>()
     const { token } = useAuth()
+    const { params } = route
 
     return(
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
             <BackIcon marginLeft={30}/>
-            <Title>Playstation 4 com 2 controles</Title>
+            <Title>{params.name}</Title>
             <SubtitleContainer>
-                <SubTitle>Publicado em 10/04/23</SubTitle>
-                <SubTitle>Refice, PE</SubTitle>
+                <SubTitle>Publicado em {getDate(params.createdAt)}</SubTitle>
             </SubtitleContainer>
-            <Carousel images={images}/>
+            <Carousel images={params.images}/>
             <InfoContainer>
-                <Price>R$ 2.500,00</Price>
+                <Price>R$ {params.price}</Price>
                 <InteractionContainer>
                     <Button>
                         <Like source={like}/>
@@ -57,7 +42,7 @@ const Product = () =>{
                 </InteractionContainer>
             </InfoContainer>
             <Description>{description}</Description>
-            <SellerInfo />
+            <SellerInfo name={params.seller.name}/>
             <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
             <DenounceSeller onPress={() => navigation.navigate(token ? 'Denounce': 'Login')}>Denunciar Vendedor</DenounceSeller>
         </Container>
