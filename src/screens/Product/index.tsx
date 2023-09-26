@@ -28,6 +28,7 @@ const Product = ({ route } : Props) =>{
             <Title>{params.name}</Title>
             <SubtitleContainer>
                 <SubTitle>Publicado em {getDate(params.createdAt)}</SubTitle>
+                <SubTitle>{params.address.city}, {params.address.state}</SubTitle>
             </SubtitleContainer>
             <Carousel images={params.images}/>
             <InfoContainer>

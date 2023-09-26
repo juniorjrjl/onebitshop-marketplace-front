@@ -44,6 +44,8 @@ const AddProduct = () =>{
     const handleGetAddresses = async () => {
         const res = await addressService.getAddress();
         
+        if (res.status !== 401) return;
+
         const value = res.data.map((address: Address) => { return { key: address._id, value: `${address.street} Nº ${address.number}`} })
         setAddress(value)
     }
@@ -99,10 +101,10 @@ const AddProduct = () =>{
             <UploadInput images={images} setImages={setImages}/>
 
             <DropDownComponent data={Categories} placeholder="Selecione a categoria" 
-                setSelected={setCategory} emptyMessage="Sem categorias"/>
+                setSelected={setCategory} emptyMessage="Sem categorias" saveMethod="value"/>
 
             <DropDownComponent data={address} placeholder="Selecione o endereço" 
-                setSelected={setAddressId} emptyMessage="Sem endereços"/>
+                setSelected={setAddressId} emptyMessage="Sem endereços" saveMethod="key"/>
 
             <DefaultButton marginVertical={20} buttonType="primary" buttonHandle={()  => handleSubmitProduct('true')}>Cadastrar e publicar</DefaultButton>
             <Division>Ou</Division>

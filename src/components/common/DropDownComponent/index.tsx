@@ -7,10 +7,11 @@ interface DropDownProps {
     data: Object[];
     placeholder: string;
     setSelected: React.Dispatch<SetStateAction<string>>;
-    emptyMessage: string
+    emptyMessage: string;
+    saveMethod: 'value' | 'key'
 }
 
-const DropDownComponent = ({data, placeholder, setSelected, emptyMessage}: DropDownProps) =>{
+const DropDownComponent = ({data, placeholder, setSelected, emptyMessage, saveMethod}: DropDownProps) =>{
 
     const emptyItem = [{value: emptyMessage, disabled: true}]
     const checkedData = data?.length <= 0 ? emptyItem : data;
@@ -18,7 +19,7 @@ const DropDownComponent = ({data, placeholder, setSelected, emptyMessage}: DropD
     return(
         <DropDownContainer>
             <DropDown  setSelected={setSelected} data={checkedData} placeholder={placeholder} 
-                save="value" search={false} arrowicon={<ArrowIcon source={arrowDown}/>} />
+                save={saveMethod} search={false} arrowicon={<ArrowIcon source={arrowDown}/>} />
         </DropDownContainer>
     )
 }
