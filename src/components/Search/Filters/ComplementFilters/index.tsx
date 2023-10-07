@@ -22,7 +22,8 @@ const ComplementFilter = ({setShowFilters}: Props) => {
 
     const [fields, setFields] = useState({
         minPrice: '',
-        maxPrice: ''
+        maxPrice: '',
+        address: ''
     })
     const [category, setCategory] = useState<string>('')
     const queryContext = useContext(QueryContext);
@@ -31,12 +32,22 @@ const ComplementFilter = ({setShowFilters}: Props) => {
 
     const handleMaxPrice = () => queryContext.addFilters(`maxPrice=${fields.maxPrice}`)
 
+    const handleCategory = () => queryContext.addFilters(`category=${category}`)
+
+    const handleAddress = () => queryContext.addFilters(`address=${fields.address}`)
+
     const handleSearchFiltered = () => {
         if (fields.minPrice){
             handleMinPrice()
         }
         if (fields.maxPrice){
             handleMaxPrice()
+        }
+        if (category){
+            handleCategory()
+        }
+        if (fields.address){
+            handleAddress()
         }
         setShowFilters(false)
     }
@@ -56,7 +67,7 @@ const ComplementFilter = ({setShowFilters}: Props) => {
             </PriceContainer>
             <Title>Localização</Title>
             <LocationInputContainer>
-            <Input placeholder="Baiiro, Cidade e/ou Estado" placeholderTextColor='white'/>
+            <Input placeholder="Bairro, Cidade e/ou Estado" placeholderTextColor='white' value={fields.address} onChangeText={(v) => setFields({... fields, address: v})}/>
             </LocationInputContainer>
             <Title>Categoria</Title>
             <DropDownComponent data={Categories} placeholder="Selecione a categoria" setSelected={setCategory} saveMethod="value" emptyMessage="Sem categorias"/>
