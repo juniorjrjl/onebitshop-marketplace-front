@@ -43,8 +43,8 @@ const AddProduct = () =>{
 
     const handleGetAddresses = async () => {
         const res = await addressService.getAddress();
-        
-        if (res.status !== 401) return;
+
+        if (res.status !== 200) return;
 
         const value = res.data.map((address: Address) => { return { key: address._id, value: `${address.street} Nº ${address.number}`} })
         setAddress(value)
@@ -91,7 +91,7 @@ const AddProduct = () =>{
             </InputContainer>
 
             <InputContainer>
-                <Input placeholder="Preço" keyboardType="numeric" value={fields.price} onChangeText={(val) => setFields({...fields, price: val})}></Input>
+                <Input placeholder="Preço" keyboardType="numeric" value={fields.price} onChangeText={(val) => setFields({...fields, price: val.replace(',', '.')})}></Input>
             </InputContainer>
 
             <InputContainer>

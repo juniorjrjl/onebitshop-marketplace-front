@@ -32,7 +32,7 @@ const Product = ({ route } : Props) =>{
             </SubtitleContainer>
             <Carousel images={params.images}/>
             <InfoContainer>
-                <Price>R$ {params.price}</Price>
+                <Price>R$ {parseFloat(params.price).toFixed(2)}</Price>
                 <InteractionContainer>
                     <Button>
                         <Like source={like}/>

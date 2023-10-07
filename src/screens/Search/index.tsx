@@ -19,7 +19,7 @@ const Search = ({ route }: Props) =>{
     
     const handleSearch = async () =>{
         const { data } = await searchService.getSearchedProducts(query)
-
+        
         setData(data.products);
         setLoading(false);
     }

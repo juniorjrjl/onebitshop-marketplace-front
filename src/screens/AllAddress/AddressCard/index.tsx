@@ -32,7 +32,7 @@ const AddressCard = ({item, addresses, setAddress}: ItemProps) => {
 
     return(
         <Container>
-            <ContentTxt>{`Rua: ${item.street} - Nº ${item.number}\nUF: ${item.state}\nCEP: ${item.cep}`}</ContentTxt>
+            <ContentTxt>{`Rua: ${item.street} - Nº ${item.number}\nUF: ${item.state}\nCEP: ${item.cep.substring(0, 5)} - ${item.cep.substring(5)}`}</ContentTxt>
             <DeleteBtn onPress={handleDeleteAddress}>
                 <DeleteIcon source={deleteIcon}/>
             </DeleteBtn>
