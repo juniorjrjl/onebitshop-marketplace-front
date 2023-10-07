@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Bold, Container, FiltersContainer, FiltersIcon, FiltersText, ModalContainer, ModalOverlay, ModalText, OrderText } from "./styled";
 import { Modal } from "react-native";
-import ComplementFilter from "../../screens/Search/ComplementFilters";
-import { QueryContext } from "../../contexts/queryContext";
+import ComplementFilter from "./ComplementFilters";
+import { QueryContext } from "../../../contexts/queryContext";
 
-const filtersIcon = require('../../../assets/icons/filtrar.png')
+const filtersIcon = require('../../../../assets/icons/filtrar.png')
 
 const Filters = () => {
 
@@ -42,7 +42,7 @@ const Filters = () => {
                 </FiltersContainer>
             </Container>
             {
-                showFilters ? <ComplementFilter /> : null
+                showFilters ? <ComplementFilter setShowFilters={setShowFilters} /> : null
             }
         </>
     );

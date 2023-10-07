@@ -8,7 +8,7 @@ import ProductList from "../../components/common/ProductList"
 import { Product } from "../../entities/Product"
 import searchService from "../../services/searchService"
 import Loader from "../Loader"
-import Filters from "../../components/Filters"
+import Filters from "../../components/Search/Filters"
 import { QueryContext } from "../../contexts/queryContext"
 
 type Props = NativeStackScreenProps<PropsNavigationStack, "Search">
@@ -47,6 +47,8 @@ const Search = ({ route }: Props) =>{
     useEffect(() => { joinedFilters && handleSearch() }, [joinedFilters])
 
     useEffect(() => setFilters([query]), [query])
+
+    console.log(joinedFilters)
 
     return(
         <Container>
