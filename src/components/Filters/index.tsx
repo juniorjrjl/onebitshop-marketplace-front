@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Bold, Container, FiltersContainer, FiltersIcon, FiltersText, ModalContainer, ModalOverlay, ModalText, OrderText } from "./styled";
 import { Modal } from "react-native";
 import ComplementFilter from "../../screens/Search/ComplementFilters";
+import { QueryContext } from "../../contexts/queryContext";
 
 const filtersIcon = require('../../../assets/icons/filtrar.png')
 
@@ -10,9 +11,12 @@ const Filters = () => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [filterText, setFilterText] = useState<string>('Mais Recente');
     const [showFilters, setShowFilters] = useState<boolean>(false);
+    const queryContext = useContext(QueryContext);
 
-    const handleSetFilter =async (filterName: string) => {
+    const handleSetFilter =async (filterName: string, filter: string) => {
         setFilterText(filterName);
+        console.log(filter + '\n')
+        queryContext.addFilters(`orderBy=${filter}`)
         setModalVisible(false);
     }
 
@@ -26,9 +30,9 @@ const Filters = () => {
                 <Modal animationType="fade" transparent={true} visible={modalVisible}>
                     <ModalOverlay onPress={() => setModalVisible(false)} activeOpacity={1}>
                         <ModalContainer>
-                            <ModalText onPress={() => handleSetFilter('Maior Preço')}>Maior Preço</ModalText>
-                            <ModalText onPress={() => handleSetFilter('Menor Preço')}>Menor Preço</ModalText>
-                            <ModalText onPress={() => handleSetFilter('Mais Recente Preço')}>Mais Recente Preço</ModalText>
+                            <ModalText onPress={() => handleSetFilter('Maior Preço', 'price&direction=desc')}>Maior Preço</ModalText>
+                            <ModalText onPress={() => handleSetFilter('Menor Preço', 'price&direction=asc')}>Menor Preço</ModalText>
+                            <ModalText onPress={() => handleSetFilter('Mais Recente', 'updatedAt')}>Mais Recente Preço</ModalText>
                         </ModalContainer>
                     </ModalOverlay>
                 </Modal>

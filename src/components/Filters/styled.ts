@@ -23,12 +23,13 @@ export const ModalOverlay = styled.TouchableOpacity`
 `;
 
 export const ModalContainer = styled.View`
-    width: 100px;
+    width: 120px;
     height: 100px;
     border-radius: 5px;
     margin-left: 26%;
     margin-top: 25%;
     justify-content: center;
+    background-color: white;
 `;
 
 export const ModalText = styled.Text`

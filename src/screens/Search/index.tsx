@@ -9,27 +9,51 @@ import { Product } from "../../entities/Product"
 import searchService from "../../services/searchService"
 import Loader from "../Loader"
 import Filters from "../../components/Filters"
+import { QueryContext } from "../../contexts/queryContext"
 
 type Props = NativeStackScreenProps<PropsNavigationStack, "Search">
 
 const Search = ({ route }: Props) =>{
+    const [filters, setFilters] = useState<string[]>([])
     const [data, setData] = useState<Product[]>([])
     const [loading, setLoading] = useState<boolean>(true);
     const query = route?.params.query
     
+    let joinedFilters = filters.join("&")
     const handleSearch = async () =>{
-        const { data } = await searchService.getSearchedProducts(query)
+        const { data } = await searchService.getSearchedProducts(joinedFilters)
         
         setData(data.products);
         setLoading(false);
     }
 
-    useEffect(() => { handleSearch() }, [query])
+    const addFilters = (filter: string) => {
+        const newFilterParts = filter.split("=")
+
+        const newFilters = filters.map(f => f.startsWith(newFilterParts[0]) ? filter : f);
+
+        if(!newFilters.includes(filter)){
+            newFilters.push(filter)
+        }
+
+        setFilters(newFilters)
+    }
+
+    const queryContextValue = {
+        filters,
+        addFilters
+    }
+
+    useEffect(() => { joinedFilters && handleSearch() }, [joinedFilters])
+
+    useEffect(() => setFilters([query]), [query])
 
     return(
         <Container>
             <Header />
-            <Filters />
+            <QueryContext.Provider value={queryContextValue}>
+                <Filters />
+            </QueryContext.Provider>
             { 
                 loading ? 
                     (<Loader />) : 
