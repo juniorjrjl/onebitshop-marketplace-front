@@ -1,7 +1,7 @@
 import React from "react";
-import { Product } from "../../../screens/Categories";
 import { FlatList, ListRenderItem, View } from "react-native";
 import CategoryCard from "./CategoryCard";
+import { Product } from "../../../entities/Product";
 
 interface Props {
     products: Product[];

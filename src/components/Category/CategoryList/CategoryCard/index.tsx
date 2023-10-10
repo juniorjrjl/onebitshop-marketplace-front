@@ -15,14 +15,14 @@ const CategoryCard = ({ product }: Props) => {
     const navigation = useNavigation<PropsStack>()
 
     return(
-        <Container activeOpacity={0.85} onPress={() => navigation.navigate("Product")}>
+        <Container activeOpacity={0.85} onPress={() => navigation.navigate("Product", {...product})}>
             <Image source={{ uri: product.images[0].url }}/>
             <InfoContainer>
                 <Price>{product.price}</Price>
                 <Title numberOfLines={2}>{product.name}</Title>
                 <LikeContainer>
                     <PublishedText>
-                        Publicado em{'\n'}{product.publishedData}
+                        Publicado em{'\n'}{product.createdAt}
                     </PublishedText>
                     <Button onPress={() => {}} activeOpacity={0.85}>
                         <Like source={likeImg} />

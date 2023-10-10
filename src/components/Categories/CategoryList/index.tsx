@@ -7,16 +7,20 @@ import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../routes";
 import { Product } from "../../../entities/Product";
 
-const CategoryList = ({ category }: Category) =>{
+interface Props{
+    category: Category
+}
+
+const CategoryList = ({ category }: Props) =>{
     const navigation = useNavigation<PropsStack>()
     const renderItem: ListRenderItem<Product> = ({item}) =>  <CategoryCard product={item} key={item._id}/>
     return(
         <Container>
             <TitleContainer>
                 <Title>{category._id}</Title>
-                <SeeMore onPress={() => navigation.navigate('Category', {_id: category._id, products: category.product})}>Ver mais</SeeMore>
+                <SeeMore onPress={() => navigation.navigate('Category', {_id: category._id, products: category.products})}>Ver mais</SeeMore>
             </TitleContainer>
-            <FlatList data={category.product} renderItem={renderItem}
+            <FlatList data={category.products} renderItem={renderItem}
                 horizontal showsHorizontalScrollIndicator={false}/>
         </Container>
     )
