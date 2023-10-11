@@ -1,19 +1,17 @@
 import React from "react";
-import { Container, InfoLikeContainer, LikeButton, LikeIcon, ProductImage, ProductInfoContainer, ProductPrice, ProductPriceTitleContainer, ProductTitle, PublishedText, SellerInfoContainer, SellerName } from "./styled";
-import { Alert } from "react-native";
+import { Container, InfoLikeContainer, ProductImage, ProductInfoContainer, ProductPrice, ProductPriceTitleContainer, ProductTitle, PublishedText, SellerInfoContainer, SellerName } from "./styled";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../../routes";
 import { Product } from "../../../../entities/Product";
 import getDate from "../../../../utils/getDate";
-
-const like = require('../../../../../assets/icons/like.png')
-const liked = require('../../../../../assets/icons/liked.png')
+import Like from "../../../Like";
 
 interface DataProps {
-    data: Product
+    data: Product,
+    favorite: boolean
 }
 
-const ProductCard = ({ data }: DataProps) =>{
+const ProductCard = ({ data, favorite }: DataProps) =>{
     const navigation = useNavigation<PropsStack>()
     return(
         <Container activeOpacity={0.85} onPress={() => navigation.navigate("Product", {...data})}>
@@ -28,13 +26,7 @@ const ProductCard = ({ data }: DataProps) =>{
                         <PublishedText>Publicado em {getDate(data.createdAt)} por:</PublishedText>
                         <SellerName>{data.seller.name}</SellerName>
                     </SellerInfoContainer>
-                    {data ? 
-                        (<LikeButton onPress={() => Alert.alert("Você deu like")}>
-                            <LikeIcon source={liked}/>
-                        </LikeButton>) : 
-                        (<LikeButton onPress={() => Alert.alert("Você deu dislike")}>
-                            <LikeIcon source={like}/>
-                        </LikeButton>)}
+                    <Like favorites={favorite} productId={data._id}/>
                 </InfoLikeContainer>
             </ProductInfoContainer>
     </Container>

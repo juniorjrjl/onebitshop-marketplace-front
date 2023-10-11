@@ -15,7 +15,6 @@ const Filters = () => {
 
     const handleSetFilter =async (filterName: string, filter: string) => {
         setFilterText(filterName);
-        console.log(filter + '\n')
         queryContext.addFilters(`orderBy=${filter}`)
         setModalVisible(false);
     }

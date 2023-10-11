@@ -48,8 +48,6 @@ const Search = ({ route }: Props) =>{
 
     useEffect(() => setFilters([query]), [query])
 
-    console.log(joinedFilters)
-
     return(
         <Container>
             <Header />

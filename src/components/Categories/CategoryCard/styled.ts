@@ -6,7 +6,7 @@ export const Container = styled.TouchableOpacity`
     border: 1px solid ${({ theme }) => theme.colors.borderColor};
     border-radius: 5px;
     margin-right: 20px;
-`
+`;
 
 export const Image = styled.Image.attrs({
     resizeMode: 'contain'
@@ -15,7 +15,7 @@ export const Image = styled.Image.attrs({
     height: 130px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-`
+`;
 
 export const TextContainer = styled.View`
     margin: 8px 12px;
@@ -25,30 +25,21 @@ export const Title = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.primaryText};
     font-weight: bold;
-`
+`;
 
 export const Price = styled.Text`
     font-size: 13px;
     color: ${({ theme }) => theme.colors.secondaryText};
-`
+`;
 
 export const SellerLikeContainer = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-top: 6px;
-`
+`;
 
 export const SellerName = styled.Text`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.primaryText};
-`
-
-export const LikeButtom = styled.TouchableOpacity``
-
-export const LikeImage = styled.Image.attrs({
-    resizeMode: 'contain'
-})`
-    width: 22px;
-    height: 22px;
-`
+`;

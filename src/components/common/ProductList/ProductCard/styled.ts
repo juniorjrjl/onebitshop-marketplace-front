@@ -54,11 +54,3 @@ export const SellerName = styled.Text`
     color: ${({ theme }) => theme.colors.primaryText};
     font-weight: bold;
 `
-
-export const LikeButton = styled.TouchableOpacity``
-
-export const LikeIcon = styled.Image.attrs({
-    resizeMode: 'contain'
-})`
-    width: 30px
-`

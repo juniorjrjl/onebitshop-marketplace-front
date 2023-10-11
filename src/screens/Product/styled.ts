@@ -43,14 +43,9 @@ export const InteractionContainer = styled.View`
     flex-direction: row;
     align-items: center;
 `
-export const Button = styled.TouchableOpacity``
-
-export const Like = styled.Image.attrs({
-    resizeMode: 'contain'
-})`
-    width: 30px;
-    margin-right: 15px;
-`;
+export const Button = styled.TouchableOpacity`
+    margin-left: 15px;
+`
 
 export const Share = styled.Image.attrs({
     resizeMode: 'contain'

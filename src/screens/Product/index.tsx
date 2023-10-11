@@ -1,5 +1,5 @@
-import React from "react"
-import { Button, Container, DenounceSeller, InfoContainer, InteractionContainer, Like, Price, Share, SubTitle, SubtitleContainer, Title } from "./styled";
+import React, { useEffect, useState } from "react"
+import { Button, Container, DenounceSeller, InfoContainer, InteractionContainer, Price, Share, SubTitle, SubtitleContainer, Title } from "./styled";
 import BackIcon from "../../components/common/BackIcon";
 import Carousel from "../../components/Product/Carousel";
 import Description from "../../components/Product/Description";
@@ -10,17 +10,32 @@ import { PropsNavigationStack, PropsStack } from "../../routes";
 import useAuth from "../../hook/useAuth";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import getDate from "../../utils/getDate";
+import favoriteService from "../../services/favoriteService";
+import { Product as ProductType } from "../../entities/Product";
+import Like from "../../components/Like";
 
-const like = require('../../../assets/icons/like.png')
 const share = require('../../../assets/icons/share.png')
 
 type Props = NativeStackScreenProps<PropsNavigationStack, "Product">
 
 const Product = ({ route } : Props) =>{
-    const description = "teste"
+    const [liked, setLiked] = useState<boolean>(false)
     const navigation = useNavigation<PropsStack>()
     const { token } = useAuth()
     const { params } = route
+
+    const handleGetFavorites = async () => {
+        if (!token) return
+
+        const res = await favoriteService.getFavorite()
+
+        const isLiked = res.data.map((val: ProductType) => val._id)
+
+        const liked = isLiked.some((liked: string) => route.params._id === liked)
+        setLiked(liked)
+    }
+
+    useEffect(() => { handleGetFavorites() }, [route])
 
     return(
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
@@ -34,15 +49,13 @@ const Product = ({ route } : Props) =>{
             <InfoContainer>
                 <Price>R$ {parseFloat(params.price).toFixed(2)}</Price>
                 <InteractionContainer>
-                    <Button>
-                        <Like source={like}/>
-                    </Button>
+                    <Like favorites={liked} productId={route.params._id} />
                     <Button>
                         <Share source={share}/>
                     </Button>
                 </InteractionContainer>
             </InfoContainer>
-            <Description>{description}</Description>
+            <Description>{params.description}</Description>
             <SellerInfo name={params.seller.name}/>
             <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
             <DenounceSeller onPress={() => navigation.navigate(token ? 'Denounce': 'Login')}>Denunciar Vendedor</DenounceSeller>
