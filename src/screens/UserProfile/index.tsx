@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { AddressText, Container, DeleteAcc, LogOutBtn, LogOutText } from "./styled"
 import NavBar from "../../components/common/NavBar"
 import DefaultTitle from "../../components/common/DefaultTitle"
@@ -9,34 +9,21 @@ import { Alert } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { PropsStack } from "../../routes"
 import useAuth from "../../hook/useAuth"
-
-const Data = [
-    {
-        id: "1",
-        productImage:"https://http2.mlstatic.com/D_NQ_NP_715237-MLA45308505060_032021-O.jpg",
-        price: "2600",
-        title: "Playstation 4 novo com 3 jogos acompanhando",
-        publishedData: "14/02/23",
-    },
-    {
-        id: "2",
-        productImage:"https://m.media-amazon.com/images/I/61hJ40qZKKL._AC_SX679_.jpg",
-        price: "2600",
-        title: "Playstation 5 novo com 1 jogo acompanhando",
-        publishedData: "14/02/23",
-    },
-    {
-        id: "3",
-        productImage:"https://http2.mlstatic.com/D_NQ_NP_715237-MLA45308505060_032021-O.jpg",
-        price: "2600",
-        title: "Playstation 4 novo com 2 jogos acompanhando",
-        publishedData: "14/02/23",
-    },
-];
+import profileService from "../../services/profileService"
+import Loader from "../Loader"
+import { User } from "../../entities/User"
 
 const UserProfile = () =>{
     const { logout } = useAuth()
     const navigation = useNavigation<PropsStack>()
+    const [userInfo, setUserInfo] = useState<User>()
+
+    const handleUserInfo =async () => {
+        const { data } = await profileService.getUserProfile();
+        setUserInfo(data)
+    }
+
+    useEffect(() => {handleUserInfo()}, [])
 
     const handleDeleteAcc = () =>{
         Alert.alert('Você tem certeza?', 'Ao fazer isso você excluira permanentemente sua conta',
@@ -50,16 +37,19 @@ const UserProfile = () =>{
             }
         ])
     }
+
+    if(!userInfo) return <Loader />
+
     return(
         <>
             <Container contentContainerStyle={{ paddingBottom: 180 }}>
                 <DefaultTitle fontSize={20}>Meu Perfil</DefaultTitle>
-                <ProfileInfo />
-                <Form />
+                <ProfileInfo userInfo={userInfo}/>
+                <Form userInfo={userInfo}/>
                 
                 <AddressText onPress={() => navigation.navigate('AllAddress', { newAddress: false })}>Gerenciar Endereços</AddressText>
 
-                {/*<UserAds products={Data} seller={false}/ >*/}
+                {/*<UserAds products={} seller={false}/ >*/}
 
                 <LogOutBtn onPress={logout}>
                     <LogOutText>Sair da sua conta</LogOutText>

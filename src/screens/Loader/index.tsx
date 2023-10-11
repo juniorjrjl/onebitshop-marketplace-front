@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../Home/styled";
+import { Container } from "./styled";
 import { ActivityIndicator } from "react-native";
 
 const Loader = () => 
