@@ -11,7 +11,8 @@ export interface Seller {
     _id: string;
     name: string;
     email: string;
-    phone: string
+    phone: string;
+    rating: string;
 }
 
 export interface Product {

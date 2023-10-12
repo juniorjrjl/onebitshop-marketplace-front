@@ -56,7 +56,7 @@ const Product = ({ route } : Props) =>{
                 </InteractionContainer>
             </InfoContainer>
             <Description>{params.description}</Description>
-            <SellerInfo name={params.seller.name}/>
+            <SellerInfo product={route.params}/>
             <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
             <DenounceSeller onPress={() => navigation.navigate(token ? 'Denounce': 'Login')}>Denunciar Vendedor</DenounceSeller>
         </Container>

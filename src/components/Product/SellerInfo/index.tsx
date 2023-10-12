@@ -4,23 +4,24 @@ import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../routes";
 import { AirbnbRating } from "react-native-ratings";
 import useAuth from "../../../hook/useAuth";
+import { Product } from "../../../entities/Product";
 
 interface Props{
-    name: string
+    product: Product
 }
 
-const SellerInfo = ({name}: Props) =>{
+const SellerInfo = ({product}: Props) =>{
 
     const navigation = useNavigation<PropsStack>();
 
-    const Rate = null
+    const Rate = parseInt(product.seller.rating)
 
     const { token } = useAuth()
 
     return(
         <Container>
             <SellerContainer>
-                <Name>{name}</Name>
+                <Name>{product.seller.name}</Name>
                     {Rate ? 
                         (
                             <Button onPress={() => navigation.navigate(token ? 'Feedback': 'Login')}>
@@ -38,7 +39,7 @@ const SellerInfo = ({name}: Props) =>{
                         )
                     }
             </SellerContainer>
-            <SeeProfile onPress={() => navigation.navigate("SellerProfile")}>Ver perfil</SeeProfile>
+            <SeeProfile onPress={() => navigation.navigate("SellerProfile", { sellerId: product.seller._id })}>Ver perfil</SeeProfile>
         </Container>
     )
 }

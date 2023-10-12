@@ -22,7 +22,14 @@ const profileService = {
         const token = await SecureStore.getItemAsync('onebitshop-token');
         const res = await api.put(`/profile/`, params, { headers: {Authorization: `Bearer ${token}`} });
         return res
-    }
+    },
+
+    getSellerProfile : async (sellerId: string) => {
+        const token = await SecureStore.getItemAsync('onebitshop-token');
+
+        const res = await api.get(`/users/${sellerId}`,  { headers: {Authorization: `Bearer ${token}`} });
+        return res
+    },
 
 }
 

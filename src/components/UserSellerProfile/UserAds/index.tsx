@@ -19,16 +19,20 @@ const UserAds = ({ products, seller }: ProductProps) =>{
 
     const navigation = useNavigation<PropsStack>()
 
-    const handleEditProduct = (product: Product) => navigation.navigate("UpdateProduct", {
-        _id: product._id,
-        name: product.name,
-        price: product.price,
-        description: product.description,
-        images: product.images,
-        category: product.category,
-        addressId: product.address._id,
-        published: product.publishedData
-    })
+    const handleEditProduct = (product: Product) => {
+        seller ? 
+            navigation.navigate('Product', {... product}) :
+            navigation.navigate("UpdateProduct", {
+                _id: product._id,
+                name: product.name,
+                price: product.price,
+                description: product.description,
+                images: product.images,
+                category: product.category,
+                addressId: product.address._id,
+                published: product.publishedData
+            })
+    }
 
     const handleDeleteProduct = async (_id: string) => {
         Alert.alert('Exclusão de produto', 'Confirma a exclusão do produto?',
