@@ -49,7 +49,7 @@ const UserProfile = () =>{
                 
                 <AddressText onPress={() => navigation.navigate('AllAddress', { newAddress: false })}>Gerenciar Endereços</AddressText>
 
-                {/*<UserAds products={} seller={false}/ >*/}
+                {<UserAds products={userInfo.products} seller={false}/ >}
 
                 <LogOutBtn onPress={logout}>
                     <LogOutText>Sair da sua conta</LogOutText>

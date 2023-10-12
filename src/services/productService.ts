@@ -12,6 +12,14 @@ interface AddProductParams{
     published: string;
 }
 
+interface UpdateParams{
+    _id: string
+    name: string;
+    price: string;
+    description: string;
+    category: string;
+}
+
 const productService = {
 
     addProduct: async (params: AddProductParams) => {
@@ -51,6 +59,22 @@ const productService = {
 
         return res.data;
         
+    },
+
+    updateProduct :async (params: UpdateParams) => {
+        const token = await SecureStore.getItemAsync('onebitshop-token');
+
+        const res = await api.put(`/products/${params._id}`, params, {headers: {Authorization: `Bearer ${token}`}})
+
+        return res
+    },
+
+    deleteProduct :async (_id: string) => {
+        const token = await SecureStore.getItemAsync('onebitshop-token');
+
+        const res = await api.delete(`/products/${_id}`, {headers: {Authorization: `Bearer ${token}`}})
+
+        return res
     }
 
 }

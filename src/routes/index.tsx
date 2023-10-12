@@ -6,6 +6,7 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Search from "../screens/Search";
 import UserProfile from "../screens/UserProfile";
+import UpdateProduct from "../screens/UpdateProduct";
 import SellerProfile from "../screens/SellerProfile";
 import AllAddress from "../screens/AllAddress";
 import AddAddress from "../screens/AddAddress";
@@ -17,7 +18,7 @@ import Denounce from "../screens/Denounce";
 import Feedback from "../screens/Feedback";
 import AllChats from "../screens/AllChats";
 import Chat from "../screens/Chat";
-import { Product } from "../entities/Product";
+import { Image, Product } from "../entities/Product";
 import useAuth from "../hook/useAuth";
 
 export type PropsNavigationStack = {
@@ -34,6 +35,16 @@ export type PropsNavigationStack = {
     },
     AddAddress: undefined,
     AddProduct: undefined,
+    UpdateProduct: {
+        _id: string
+        name: string;
+        price: string;
+        description: string;
+        images: Image[]
+        category: string;
+        addressId: string;
+        published: string;
+    },
     Categories: undefined,
     Category: {
         _id: String,
@@ -86,6 +97,7 @@ const Routes = () =>{
                             <Stack.Screen name="Feedback" component={Feedback}/>
                             <Stack.Screen name="AllChats" component={AllChats}/>
                             <Stack.Screen name="Chat" component={Chat}/>
+                            <Stack.Screen name="UpdateProduct" component={UpdateProduct}/>
                         </>
                     )
                 }
