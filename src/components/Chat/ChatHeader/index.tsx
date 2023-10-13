@@ -5,10 +5,17 @@ import { Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { PropsStack } from "../../../routes";
 import AdCard from "./AdCard";
+import { Product } from "../../../entities/Product";
 
 const modalImg = require('../../../../assets/icons/dots.png')
 
-const ChatHeader = ({ sellerName, product }: any) =>{
+interface Props {
+    sellerId: string;
+    sellerName: string;
+    product: Product;
+}
+
+const ChatHeader = ({ sellerId, sellerName, product }: Props) =>{
     const [modalVisible, setModalVisibe] = useState(false)
     
     const handleToggleModal = () => setModalVisibe(!modalVisible)
@@ -16,7 +23,7 @@ const ChatHeader = ({ sellerName, product }: any) =>{
     const navigation = useNavigation<PropsStack>()
 
     const handleSellerProfile = () => {
-        navigation.navigate('SellerProfile')
+        navigation.navigate('SellerProfile', { sellerId })
         setModalVisibe(false)
     }
     const handleFeedback = () => {

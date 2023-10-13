@@ -20,6 +20,7 @@ import AllChats from "../screens/AllChats";
 import Chat from "../screens/Chat";
 import { Image, Product } from "../entities/Product";
 import useAuth from "../hook/useAuth";
+import { Message } from "../entities/Message";
 
 export type PropsNavigationStack = {
     Home: undefined;
@@ -57,7 +58,12 @@ export type PropsNavigationStack = {
     Feedback: undefined,
     AllChats: undefined,
     Chat: {
-        chatInfo: any
+        _id?: string;
+        product: Product;
+        sellerName: string;
+        sellerId: string;
+        buyerId: string;
+        messages: Message[];
     }
 }
 

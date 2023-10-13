@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Header from "../../components/common/Header"
 import NavBar from "../../components/common/NavBar"
 import ProductList from "../../components/common/ProductList"
@@ -6,6 +6,7 @@ import { Container } from "./styled"
 import productService from "../../services/productService"
 import { Product } from "../../entities/Product"
 import Loader from "../Loader"
+import { useFocusEffect } from "@react-navigation/native"
 
 const Home = () => {
 
@@ -27,15 +28,14 @@ const Home = () => {
         setPage(page + 1)
     }
 
-    useEffect(() => {handleGetProducts()}, [])
+    useFocusEffect( React.useCallback(() => {handleGetProducts()}, []))
+
+    if (loading) return <Loader />
 
     return(
         <Container>
             <Header />
-            {loading ? 
-                <Loader /> : 
                 <ProductList products={products} handleGetProducts={handleGetProducts}/>
-            }
             <NavBar />
         </Container>
     )

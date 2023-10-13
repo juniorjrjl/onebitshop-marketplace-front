@@ -13,6 +13,8 @@ import getDate from "../../utils/getDate";
 import favoriteService from "../../services/favoriteService";
 import { Product as ProductType } from "../../entities/Product";
 import Like from "../../components/Like";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import chatService from "../../services/chatService";
 
 const share = require('../../../assets/icons/share.png')
 
@@ -22,7 +24,39 @@ const Product = ({ route } : Props) =>{
     const [liked, setLiked] = useState<boolean>(false)
     const navigation = useNavigation<PropsStack>()
     const { token } = useAuth()
-    const { params } = route
+
+    const handleChatSeller = async () => {
+        const user = await AsyncStorage.getItem('user');
+        const { _id } = JSON.parse(user || '');
+
+        const initialMessage = `Olá, quero saber mais sobre o seu produto, ${route.params.seller.name}`;
+        const params = { 
+            product: route.params._id,
+            seller: route.params.seller._id,
+            initialMessage,
+        };
+
+        const res = await chatService.startChat(params);
+
+        if (res.status <400){
+            navigation.navigate('Chat', 
+            { 
+                _id: res.data._id,
+                product: route.params,
+                sellerName: route.params.seller.name,
+                sellerId: route.params.seller._id,
+                buyerId: _id,
+                messages: 
+                [
+                    {
+                        content: initialMessage,
+                        receiver: route.params.seller._id,
+                        sender: _id
+                    }
+                ]
+            })
+        }
+    }
 
     const handleGetFavorites = async () => {
         if (!token) return
@@ -40,14 +74,14 @@ const Product = ({ route } : Props) =>{
     return(
         <Container contentContainerStyle={{ paddingBottom: 50 }}>
             <BackIcon marginLeft={30}/>
-            <Title>{params.name}</Title>
+            <Title>{route.params.name}</Title>
             <SubtitleContainer>
-                <SubTitle>Publicado em {getDate(params.createdAt)}</SubTitle>
-                <SubTitle>{params.address.city}, {params.address.state}</SubTitle>
+                <SubTitle>Publicado em {getDate(route.params.createdAt)}</SubTitle>
+                <SubTitle>{route.params.address.city}, {route.params.address.state}</SubTitle>
             </SubtitleContainer>
-            <Carousel images={params.images}/>
+            <Carousel images={route.params.images}/>
             <InfoContainer>
-                <Price>R$ {parseFloat(params.price).toFixed(2)}</Price>
+                <Price>R$ {parseFloat(route.params.price).toFixed(2)}</Price>
                 <InteractionContainer>
                     <Like favorites={liked} productId={route.params._id} />
                     <Button>
@@ -55,9 +89,9 @@ const Product = ({ route } : Props) =>{
                     </Button>
                 </InteractionContainer>
             </InfoContainer>
-            <Description>{params.description}</Description>
+            <Description>{route.params.description}</Description>
             <SellerInfo product={route.params}/>
-            <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={() => {}}>Fale com o Vendedor</DefaultButton>
+            <DefaultButton buttonType="primary" marginVertical={0} buttonHandle={handleChatSeller}>Fale com o Vendedor</DefaultButton>
             <DenounceSeller onPress={() => navigation.navigate(token ? 'Denounce': 'Login')}>Denunciar Vendedor</DenounceSeller>
         </Container>
     );
